@@ -183,7 +183,7 @@ describe('Login page', function () {
       expect(await loginPage.getMessageText()).to.be.equal('Unauthorized');
     });
 
-    it('shows proper error message on valid email and password', async () => {
+    it('redirects to switch org on valid email and password', async () => {
       expect(await loginPage.isContinueButtonDisabled()).to.be.equal(true);
 
       await loginPage.enterEmail(process.env.ACTIVEFYLER); // any random string which is not '' and not a valid email

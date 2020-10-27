@@ -1,8 +1,8 @@
 var element = require('../classes/element');
 
-module.exports = async () => {
-    // var header = await element('body > ion-nav-view > ion-view > ion-content > div.scroll > div > div.item.item-divider.text-center');
+module.exports = async (orgs) => {
     var searchInput = await element('#switch-org--search-input');
+    var switchOrgElements = await element('.switch-org--org-element');
     return {
         // header,
         // async isHeaderDisplayed() {
@@ -14,6 +14,13 @@ module.exports = async () => {
         async isSearchInputDisplayed() {
             await searchInput.waitForDisplayed();
             return await searchInput.isDisplayed();
+        },
+        async checkFirstElementOfOrgList(orgName) {
+            console.log(await switchOrgElements.getText());
+            return (await switchOrgElements.getText()).toLowerCase().includes(orgName.toLowerCase());
+        },
+        async searchFor(searchText) {
+            await searchInput.sendInput(searchText);
         }
     };
 };
